@@ -1,0 +1,46 @@
+app:
+  label: prod-env
+  period: 10
+  job:
+    scheduled:
+      enabled: true
+      rate: 1000
+      cron: "*/1 * * * * *"
+
+server:
+  port: 8081
+
+spring:
+  jpa:
+    show-sql: false
+    generate-ddl: false
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    properties:
+      hibernate:
+        default_schema: sample
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+        show_sql: false
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://sample:5432/sample?prepareThreshold=0
+    username: sample
+    password: sample
+    platform: postgres
+    hikari:
+      schema: sample
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: sample
+      auto-offset-reset: earliest
+      properties:
+        isolation:
+          level: read_committed
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer

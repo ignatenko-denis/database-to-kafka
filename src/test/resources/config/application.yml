@@ -1,0 +1,43 @@
+app:
+  label: test-env
+  period: 10
+  job:
+    scheduled:
+      enabled: false
+      rate: 1000
+      cron: "*/1 * * * * *"
+
+spring:
+  jpa:
+    show-sql: false
+    generate-ddl: true
+
+  datasource:
+    driver-class-name: org.hsqldb.jdbcDriver
+    url: jdbc:hsqldb:file:sample;sql.syntax_pgs=true
+    username: sa
+    password: sa
+
+#spring:
+#  jpa:
+#    show-sql: false
+#    generate-ddl: false
+#    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+#    properties:
+#      hibernate:
+#        default_schema: sample
+#        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+#        show_sql: false
+#
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://sample:5432/sample?prepareThreshold=0
+#    username: sample
+#    password: sample
+#    platform: postgres
+#    hikari:
+#      schema: sample
+
+  kafka:
+    consumer:
+      group-id: sample

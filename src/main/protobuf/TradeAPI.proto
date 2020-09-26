@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package com.sample;
+
+import "google/protobuf/timestamp.proto";
+
+message TradeRs {
+  int64 clientId = 1;
+  string exchange = 2;
+  string ticker = 3;
+  string price = 4;
+  int64 amount = 5;
+  google.protobuf.Timestamp date = 6;
+
+  enum Status {
+    COMPLETED = 0;
+    CANCELLED = 1;
+  }
+  Status status = 7;
+}
