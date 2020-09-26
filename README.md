@@ -35,8 +35,8 @@ INSERT INTO sample.trade (id, client_id, exchange, ticker, price, amount, date, 
 VALUES (13786, 14295, 'NASDAQ', 'MSFT', 290.8, 97, '2020-09-25 17:22:28.931+00', 'CANCELLED', false);
 ```
 
-- http://localhost:8081/actuator/health
-- http://localhost:8081/actuator/info
+- http://localhost:8001/actuator/health
+- http://localhost:8001/actuator/info
 
 ***
 
