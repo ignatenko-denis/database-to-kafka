@@ -26,7 +26,7 @@ import static org.mockito.Mockito.*;
 
 class GetTradeRsProcessorTest {
     @Mock
-    private KafkaTemplate template;
+    private KafkaTemplate<String, byte[]> template;
 
     @Mock
     private TradeRepository tradeRepository;

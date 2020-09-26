@@ -28,7 +28,7 @@ public class GetTradeRsProcessor {
     private static final String TOPIC = "TradeRs";
 
     @Autowired
-    private KafkaTemplate template;
+    private KafkaTemplate<String, byte[]> template;
 
     @Autowired
     private TradeRepository tradeRepository;
@@ -48,7 +48,8 @@ public class GetTradeRsProcessor {
         for (Trade trade : page) {
             TradeAPI.TradeRs rs = build(trade);
 
-            template.send(TOPIC, UUID.randomUUID().toString(), rs.toByteArray());
+            template.send(TOPIC, UUID.randomUUID().toString(), rs.toByteArray())
+                    .addCallback(new KafkaListenableFutureCallback());
 
             // update database
             trade.setSent(true);
